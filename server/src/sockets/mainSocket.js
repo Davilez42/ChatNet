@@ -1,8 +1,8 @@
 import { Server } from 'socket.io'
-import jwt from 'jsonwebtoken'
+
 export default (server) => {
     const io = new Server(server, {
-        cors: '*'
+        cors: 'http:localhost:3000'
     });
 
     let rooms = {
@@ -12,9 +12,17 @@ export default (server) => {
     let users_connect = {
 
     }
+    //middlewares
+    io.use((client, next) => {
+        console.log('entra siempre', client.handshake);
+        next()
+    })
+
 
     io.on('connection', async (client) => {
         console.log('A client connect!', client.id)
+
+
 
         client.on('new_user', (body) => {
             const { username } = body
@@ -24,9 +32,8 @@ export default (server) => {
             }
 
             users_connect[username] = client.id
-            const tkn = jwt.sign(client.id, 'chatNet')
             console.log(users_connect);
-            return client.emit('info_message', { status: 200, message: 'OK', tkn })
+            return client.emit('info_message', { status: 200, message: 'OK' })
         })
 
 
@@ -68,7 +75,7 @@ export default (server) => {
 
         client.on('disconnect', () => {
             console.log(client.id, 'DISCONNECT');
-            
+
         })
     })
 
