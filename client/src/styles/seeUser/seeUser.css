@@ -1,0 +1,116 @@
+/* estilos para la vista de usuario */
+.body-SeeUser{
+    display: grid;
+    grid-template-areas: "rooms-user chats-user";
+    grid-template-columns: 20% auto;
+    grid-template-rows: auto;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* estilos para los botones de las salas */
+
+.rooms-user{
+    background-color: #4996b423;
+    box-shadow: 1px 1px 5px #2b2b2b;
+    display: grid;
+    grid-area: rooms-user;
+    justify-content: center;
+    margin: 1vw 1vw 1vw 1vw;
+    z-index: 1;
+}
+
+.rooms-user-name{
+    align-items: center;
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.4vw;
+    height: auto;
+    justify-content: center;
+    width: 100%;
+}
+
+.button-rooms-users{
+    align-items: center;
+    background-color: #fcfcfcad;
+    border: solid .5px #00000000;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px #000000ad;
+    cursor: pointer;
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1vw;
+    font-weight: 900;
+    height: 70%;
+    justify-content: center;
+    padding: 0 1vw 0 1vw;
+    width: 100%;
+}
+
+.button-rooms-users:hover{
+    background-color: #b3ff0070;
+}
+
+.button-rooms-users:active{
+    background-color: #fcfcfcad;
+}
+
+/* estilos para las vistas de los chats */
+
+.chats-user{
+    background-color: #4996b423;
+    box-shadow: 1px 1px 5px #2b2b2b;
+    grid-area: chats-user;
+    margin: 1vw 1vw 1vw 0;
+    z-index: 1;
+}
+
+.chat-room-Dating{
+    display: none;
+}
+
+.chat-room-Education{
+    display: none;
+}
+
+.chat-room-Games{
+    display: none;
+}
+
+.chat-room-Movies{
+    display: none;
+}
+
+.chat-room-Music{
+    display: none;
+}
+
+.chat-room-News{
+    display: none;
+}
+
+.chat-room-Sports{
+    display: none;
+}
+
+.chat-room-Support{
+    display: none;
+}
+
+.chat-room-Technology{
+    display: none;
+}
+
+.chat-room-Travel{
+    display: none;
+}
+
+.e{
+    border-radius: 5px;
+    margin: 2.5% auto 0 auto ;
+    width: 95%;
+    height: 91%;
+    background-color: #fcfcfcad;
+    box-shadow: 2px 2px 15px var(--color--para--sombra);
+
+}
