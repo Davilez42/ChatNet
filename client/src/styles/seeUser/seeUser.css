@@ -59,49 +59,13 @@
 
 .chats-user{
     background-color: #4996b423;
-    box-shadow: 1px 1px 5px #2b2b2b;
+    box-shadow: 1px 1px 10px #2b2b2b;
     grid-area: chats-user;
     margin: 1vw 1vw 1vw 0;
     z-index: 1;
 }
 
-.chat-room-Dating{
-    display: none;
-}
-
-.chat-room-Education{
-    display: none;
-}
-
-.chat-room-Games{
-    display: none;
-}
-
-.chat-room-Movies{
-    display: none;
-}
-
-.chat-room-Music{
-    display: none;
-}
-
-.chat-room-News{
-    display: none;
-}
-
-.chat-room-Sports{
-    display: none;
-}
-
-.chat-room-Support{
-    display: none;
-}
-
-.chat-room-Technology{
-    display: none;
-}
-
-.chat-room-Travel{
+.chat-room-none{
     display: none;
 }
 

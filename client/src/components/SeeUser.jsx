@@ -13,185 +13,315 @@ import Travel from "./chats/Travel"
 
 function SeeUser({ inputValue }) {
 
-  const [dating, setDating] = useState("chat-room-Dating")
-  const [education, setEducation] = useState("chat-room-Education")
-  const [games, setGames] = useState("chat-room-Games")
-  const [movies, setMovies] = useState("chat-room-Movies")
-  const [music, setMusic] = useState("chat-room-Music")
-  const [news, setNews] = useState("chat-room-News")
-  const [sports, setSports] = useState("chat-room-Sports")
-  const [support, setSupport] = useState("chat-room-Support")
-  const [technology, setTechnology] = useState("chat-room-Technology")
-  const [travel, setTravel] = useState("chat-room-Travel")
+  const [dating, setDating] = useState("chat-room-none")
+  const [Buttondating, setButtonDating] = useState(false)
+  const [education, setEducation] = useState("chat-room-none")
+  const [Buttoneducation, setButtonEducation] = useState(false)
+  const [games, setGames] = useState("chat-room-none")
+  const [Buttongames, setButtonGames] = useState(false)
+  const [movies, setMovies] = useState("chat-room-none")
+  const [Buttonmovies, setButtonMovies] = useState(false)
+  const [music, setMusic] = useState("chat-room-none")
+  const [Buttonmusic, setButtonMusic] = useState(false)
+  const [news, setNews] = useState("chat-room-none")
+  const [Buttonnews, setButtonNews] = useState(false)
+  const [sports, setSports] = useState("chat-room-none")
+  const [Buttonsports, setButtonSports] = useState(false)
+  const [support, setSupport] = useState("chat-room-none")
+  const [Buttonsupport, setButtonSupport] = useState(false)
+  const [technology, setTechnology] = useState("chat-room-none")
+  const [Buttontechnology, setButtonTechnology] = useState(false)
+  const [travel, setTravel] = useState("chat-room-none")
+  const [Buttontravel, setButtonTravel] = useState(false)
 
   const HandleClickDating = () => {
-    if (dating === "chat-room-Dating") {
+    if (dating === "chat-room-none") {
       setDating("e")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setDating("chat-room-Dating")
+      setDating("chat-room-none")
     }
+    
+    setButtonDating(true)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickEducation = () => {
-    if (education === "chat-room-Education") {
-      setDating("chat-room-Dating")
+    if (education === "chat-room-none") {
+      setDating("chat-room-none")
       setEducation("e")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setEducation("chat-room-Education")
+      setEducation("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(true)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickGames = () => {
-    if (games === "chat-room-Games") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
+    if (games === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
       setGames("e")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setGames("chat-room-Games")
+      setGames("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(true)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickMovies = () => {
-    if (movies === "chat-room-Movies") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
+    if (movies === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
       setMovies("e")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setMovies("chat-room-Movies")
+      setMovies("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(true)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickMusic = () => {
-    if (music === "chat-room-Music") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
+    if (music === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
       setMusic("e")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setMusic("chat-room-Music")
+      setMusic("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(true)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickNews = () => {
-    if (news === "chat-room-News") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
+    if (news === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
       setNews("e")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setNews("chat-room-News")
+      setNews("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(true)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickSports = () => {
-    if (sports === "chat-room-Sports") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
+    if (sports === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
       setSports("e")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setSports("chat-room-Sports")
+      setSports("chat-room-none")
     }
+    
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(true)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickSupport = () => {
-    if (support === "chat-room-Support") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
+    if (support === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
       setSupport("e")
-      setTechnology("chat-room-Technology")
-      setTravel("chat-room-Travel")
+      setTechnology("chat-room-none")
+      setTravel("chat-room-none")
     } else {
-      setSupport("chat-room-Support")
+      setSupport("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(true)
+    setButtonTechnology(false)
+    setButtonTravel(false)
+
   }
 
   const HandleClickTechnology = () => {
-    if (technology === "chat-room-Technology") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
+    if (technology === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
       setTechnology("e")
-      setTravel("chat-room-Travel")
+      setTravel("chat-room-none")
     } else {
-      setTechnology("chat-room-Technology")
+      setTechnology("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(true)
+    setButtonTravel(false)
+
   }
 
   const HandleClickTravel = () => {
-    if (travel === "chat-room-Travel") {
-      setDating("chat-room-Dating")
-      setEducation("chat-room-Education")
-      setGames("chat-room-Games")
-      setMovies("chat-room-Movies")
-      setMusic("chat-room-Music")
-      setNews("chat-room-News")
-      setSports("chat-room-Sports")
-      setSupport("chat-room-Support")
-      setTechnology("chat-room-Technology")
+    if (travel === "chat-room-none") {
+      setDating("chat-room-none")
+      setEducation("chat-room-none")
+      setGames("chat-room-none")
+      setMovies("chat-room-none")
+      setMusic("chat-room-none")
+      setNews("chat-room-none")
+      setSports("chat-room-none")
+      setSupport("chat-room-none")
+      setTechnology("chat-room-none")
       setTravel("e")
     } else {
-      setTravel("chat-room-Travel")
+      setTravel("chat-room-none")
     }
+
+    setButtonDating(false)
+    setButtonEducation(false)
+    setButtonGames(false)
+    setButtonMovies(false)
+    setButtonMusic(false)
+    setButtonNews(false)
+    setButtonSports(false)
+    setButtonSupport(false)
+    setButtonTechnology(false)
+    setButtonTravel(true)
+
   }
 
   return (
@@ -199,43 +329,43 @@ function SeeUser({ inputValue }) {
       <section className='rooms-user'>
         <h1 className='rooms-user-name'>{ inputValue }</h1>
 
-        <button onClick={HandleClickDating} className='button-rooms-users'>
+        <button onClick={HandleClickDating} className="button-rooms-users" disabled={Buttondating}>
           Citas
         </button>
 
-        <button onClick={HandleClickGames} className='button-rooms-users'>
+        <button onClick={HandleClickGames} className="button-rooms-users" disabled={Buttongames}>
           Juegos
         </button>
 
-        <button onClick={HandleClickMovies} className='button-rooms-users'>
+        <button onClick={HandleClickMovies} className="button-rooms-users" disabled={Buttonmovies}>
           Peliculas
         </button>
 
-        <button onClick={HandleClickMusic} className='button-rooms-users'>
+        <button onClick={HandleClickMusic} className="button-rooms-users" disabled={Buttonmusic}>
           Musica
         </button>
 
-        <button onClick={HandleClickSports} className='button-rooms-users'>
+        <button onClick={HandleClickSports} className="button-rooms-users" disabled={Buttonsports}>
           Deportes
         </button>
 
-        <button onClick={HandleClickTechnology} className='button-rooms-users'>
+        <button onClick={HandleClickTechnology} className="button-rooms-users" disabled={Buttontechnology}>
           Tecnologia
         </button>
 
-        <button onClick={HandleClickTravel} className='button-rooms-users'>
+        <button onClick={HandleClickTravel} className="button-rooms-users" disabled={Buttontravel}>
           Viajes
         </button>
 
-        <button onClick={HandleClickEducation} className='button-rooms-users'>
+        <button onClick={HandleClickEducation} className="button-rooms-users" disabled={Buttoneducation}>
           Educación
         </button>
 
-        <button onClick={HandleClickNews} className='button-rooms-users'>
+        <button onClick={HandleClickNews} className="button-rooms-users" disabled={Buttonnews}>
           Noticias y Actualidad
         </button>
 
-        <button onClick={HandleClickSupport} className='button-rooms-users'>
+        <button onClick={HandleClickSupport} className="button-rooms-users" disabled={Buttonsupport}>
           Grupos de apoyo
         </button>
 
