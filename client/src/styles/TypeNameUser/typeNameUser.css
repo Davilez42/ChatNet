@@ -36,13 +36,12 @@
 }
 
 /* estilos para el saludo */
-
 .greet {
     color: var(--color-letra-marco);
     font-family: var(--tipo--letra);
     margin: 1vh 0 0 0;
-    max-height: 10vh;
-    max-width: 30vw;
+    height: 10vh;
+    width: 30vw;
     text-align: center;
 }
 
@@ -51,8 +50,8 @@
     color: var(--color-letra-marco);
     font-family: var(--tipo--letra);
     margin: 0vh 0 0 0;
-    max-height: 35vh;
-    max-width: 30vw;
+    height: auto;
+    width: 30vw;
     overflow: hidden;
     text-align: center;
 }
@@ -68,8 +67,8 @@
     font-size: 1.7vw;
     font-weight: 700;
     height: 5vh;
-    margin: 0vh auto 0 auto;
-    max-width: 25vw;
+    margin: 0vh auto 0vh auto;
+    width: 25vw;
     outline: none;
     overflow: hidden;
     text-align: center;
@@ -84,7 +83,7 @@
     cursor: pointer;
     font-size: 1.3vw;
     font-weight: 900;
-    height: 60%;
+    height: 65%;
     margin: 0 auto 1vh auto;
     width: 40%;
 }

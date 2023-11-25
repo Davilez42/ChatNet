@@ -13,8 +13,8 @@ import Travel from "./chats/Travel"
 
 function SeeUser({ inputValue }) {
 
-  const [dating, setDating] = useState("chat-room-none")
-  const [Buttondating, setButtonDating] = useState(false)
+  const [dating, setDating] = useState("e")
+  const [Buttondating, setButtonDating] = useState(true)
   const [education, setEducation] = useState("chat-room-none")
   const [Buttoneducation, setButtonEducation] = useState(false)
   const [games, setGames] = useState("chat-room-none")
@@ -372,16 +372,16 @@ function SeeUser({ inputValue }) {
       </section>
 
       <section className='chats-user'>
-        <div className={dating}><Dating/></div>
-        <div className={education}><Education /></div>
-        <div className={games}><Games /></div>
-        <div className={movies}c><Movies /></div>
-        <div className={music}><Music /></div>
-        <div className={news}><News /></div>
-        <div className={sports}><Sports /></div>
-        <div className={support}><Support /></div>
-        <div className={technology}><Technology /></div>
-        <div className={travel}><Travel /></div>
+        <div className={dating}><Dating inputValue = { inputValue }/></div>
+        <div className={education}><Education inputValue = { inputValue }/></div>
+        <div className={games}><Games inputValue = { inputValue }/></div>
+        <div className={movies}c><Movies inputValue = { inputValue }/></div>
+        <div className={music}><Music inputValue = { inputValue }/></div>
+        <div className={news}><News inputValue = { inputValue }/></div>
+        <div className={sports}><Sports inputValue = { inputValue }/></div>
+        <div className={support}><Support inputValue = { inputValue }/></div>
+        <div className={technology}><Technology inputValue = { inputValue }/></div>
+        <div className={travel}><Travel inputValue = { inputValue }/></div>
       </section>
     </div>
   )
