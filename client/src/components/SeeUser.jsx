@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/seeUser/seeUser.css";
-import ChatView from "./chats/ChatView";
-
+import ChatView from "./ChatView";
+import generateColorHexadecimal from "../helpers/generateColorHex";
 import { socket } from "../socket";
 
 function SeeUser({ inputValue }) {
@@ -11,16 +11,23 @@ function SeeUser({ inputValue }) {
   const [nameNewRoom, setNameNewRoom] = useState("");
   const [clear, setClear] = useState(false);
 
+  const [colorUser, setColorUser] = useState(generateColorHexadecimal());
+
   const handlerListenRoom = (room) => {
     console.log(currentRoomListen);
     if (currentRoomListen !== room) {
       if (currentRoomListen !== "") {
         socket.emit("leave-room", {
           username: inputValue,
+          colorUser,
           name_room: currentRoomListen,
         });
       }
-      socket.emit("join-room", { username: inputValue, name_room: room });
+      socket.emit("join-room", {
+        username: inputValue,
+        colorUser,
+        name_room: room,
+      });
       setCurrentRoomListen(room);
     }
   };
@@ -29,12 +36,14 @@ function SeeUser({ inputValue }) {
     if (currentRoomListen !== "") {
       socket.emit("leave-room", {
         username: inputValue,
+        colorUser,
         name_room: currentRoomListen,
       });
     }
     if (nameNewRoom !== "") {
       socket.emit("join-room", {
         username: inputValue,
+        colorUser,
         name_room: nameNewRoom,
       });
       setCurrentRoomListen(nameNewRoom);
@@ -76,9 +85,10 @@ function SeeUser({ inputValue }) {
   return (
     <div className="body-SeeUser">
       <section className="rooms-user">
-        <h1 className="rooms-user-name">{inputValue}</h1>
-
-        <div>
+        <div className="container-info-user">
+          <h1 className="rooms-user-name">{inputValue}</h1>
+        </div>
+        <div className="container-create-room">
           <input
             className="input-name-new-room"
             type="text"
@@ -96,18 +106,21 @@ function SeeUser({ inputValue }) {
           </div>
         </div>
 
-        {currentsRooms.map((r, ind) => (
-          <button
-            key={ind}
-            onClick={() => {
-              handlerListenRoom(r);
-              setClear(true);
-            }}
-            className="button-rooms-users"
-          >
-            {r}
-          </button>
-        ))}
+        <div className="current-rooms">
+          <p>Salas</p>
+          {currentsRooms.map((r, ind) => (
+            <button
+              key={ind}
+              onClick={() => {
+                handlerListenRoom(r);
+                setClear(true);
+              }}
+              className="button-rooms-users"
+            >
+              {r}
+            </button>
+          ))}
+        </div>
       </section>
 
       <section className="chats-user">
@@ -117,6 +130,7 @@ function SeeUser({ inputValue }) {
             clear={clear}
             setClear={setClear}
             currentRoom={currentRoomListen}
+            colorUser={colorUser}
           />
         </div>
       </section>

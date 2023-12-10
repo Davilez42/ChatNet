@@ -25,7 +25,7 @@ function TypeNameUser() {
 
   useEffect(() => {
     const info_message = (body) => {
-      if (body.status === 400) {
+      if (body.status !== 200) {
         return setMessage(body.message);
       }
       setNoneType("a");

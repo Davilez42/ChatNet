@@ -16,15 +16,10 @@ export default (server) => {
     let clients_connect = {
 
     }
-    //middlewares
-    io.use((client, next) => {
-
-        next()
-    })
-
 
     io.on('connection', async (client) => {
         console.log('A client connect!', client.id)
+
         client.on('new_user', (body) => {
             const { username } = body
 
@@ -32,9 +27,8 @@ export default (server) => {
                 return client.emit('info_message', { status: 400, message: 'El nombre de usuario ya se encuentra en uso' })
             }
 
-            users_connect[username] = client.id
+            users_connect[username] = { userId: client.id, currentRoom: '' }
             clients_connect[client.id] = username
-            console.log(users_connect);
             return client.emit('info_message', { status: 200, message: 'OK' })
         })
 
@@ -44,9 +38,12 @@ export default (server) => {
 
 
         client.on('join-room', (body) => {
-            const roomsxx = io.of("/").adapter.rooms;
-            console.log(roomsxx);
-            const { name_room, username } = body
+            const { name_room, username, colorUser } = body
+            const dataUser = users_connect[clients_connect[client.id]]
+            if (!dataUser) {
+                return client.emit('info_message', { status: 401, message: 'Debes registrarte con nombre de usuario para continuar' })
+            }
+
             if (!rooms[name_room]) {
                 client.broadcast.emit('new_room', { new_room: name_room })
                 client.emit('new_room', { new_room: name_room })
@@ -54,22 +51,24 @@ export default (server) => {
             }
 
             if (!rooms[name_room].includes(username)) {
+                dataUser.currentRoom = name_room
+                users_connect[username] = dataUser
                 rooms[name_room].push(username)
             }
 
-            io.to(name_room).emit('user_entered_room', { username, type: 'entered_user' })
+            io.to(name_room).emit('user_entered_room', { username, colorUser, type: 'entered_user' })
             client.join(name_room)
             console.log(rooms);
         })
 
         client.on('leave-room', (body) => {
-            const { name_room, username } = body
+            const { name_room, colorUser, username } = body
             client.leave(name_room)
             if (!rooms[name_room]) {
-                return client.emit('info_message', { status: 400, message: 'La sala no existe' })
+                return client.emit('info_message', { status: 404, message: 'La sala no existe' })
             }
             rooms[name_room] = rooms[name_room]?.filter(u => u !== username)
-            io.to(name_room).emit('user_leave_room', { username, type: 'leave_user' })
+            io.to(name_room).emit('user_leave_room', { username, colorUser, type: 'leave_user' })
             if (rooms[name_room].length === 0 && !['general', 'ciencia'].includes(name_room)) {
                 delete rooms[name_room]
                 client.broadcast.emit('delete_room', { name_room })
@@ -80,17 +79,33 @@ export default (server) => {
 
 
         client.on('send-message-to-room', (body) => {
-            const { toRoom, text, username } = body
-            io.to(toRoom).emit(`received_message`, { text, username })
+
+            const { toRoom, text, username, colorUser } = body
+
+            const dataUser = users_connect[clients_connect[client.id]]
+
+            if (!dataUser) {
+                return client.emit('info_message', { status: 401, message: 'Debes registrarte con nombre de usuario para continuar' })
+            }
+
+            io.to(toRoom).emit(`received_message`, { text, colorUser, username })
         })
 
 
 
         client.on('disconnect', () => {
             const username_delete = clients_connect[client.id]
+            const currentRoomUser = users_connect[username_delete]?.currentRoom
+            console.log(currentRoomUser);
+            if (currentRoomUser && currentRoomUser !== '') {
+                rooms[currentRoomUser] = rooms[currentRoomUser]?.filter(u => u !== username_delete)
+                io.to(currentRoomUser).emit('user_leave_room', { username: username_delete, type: 'disconnect_user' })
+            }
+
             delete users_connect[username_delete]
             delete clients_connect[client.id]
-            console.log(users_connect, clients_connect);
+
+            //console.log(users_connect, clients_connect);
             console.log(client.id, 'DISCONNECT');
         })
     })

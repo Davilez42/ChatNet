@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/chats/chats.css";
-import { socket } from "../../socket.js";
+import "../styles/chats/chats.css";
+import { socket } from "../socket.js";
 
-function ChatView({ username, currentRoom, clear, setClear }) {
+function ChatView({ username, currentRoom, clear, setClear, colorUser }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -16,6 +16,7 @@ function ChatView({ username, currentRoom, clear, setClear }) {
     socket.emit("send-message-to-room", {
       toRoom: currentRoom,
       username,
+      colorUser,
       text: newMessage,
     });
     setNewMessage("");
@@ -37,12 +38,20 @@ function ChatView({ username, currentRoom, clear, setClear }) {
     const recived_message_event = (message) => {
       setMessages([
         ...messages,
-        { username: message.username, text: message.text, type: "message" },
+        {
+          username: message.username,
+          colorUser: message.colorUser,
+          text: message.text,
+          type: "message",
+        },
       ]);
     };
     const user_room_event = (info) => {
       console.log(info.type);
-      setMessages([...messages, { username: info.username, type: info.type }]);
+      setMessages([
+        ...messages,
+        { username: info.username, colorUser: info.colorUser, type: info.type },
+      ]);
     };
 
     socket.on(`received_message`, recived_message_event);
@@ -59,29 +68,48 @@ function ChatView({ username, currentRoom, clear, setClear }) {
   return (
     <div className="container-chat-view">
       {/* le dejos esos estilos por fuera para que no se vaya a perder ya luego los acomoda en el css o me dice y yo lo hago relajado */}
-      <h2 className="title-room">{currentRoom}</h2>
-      <div
-        id="miContenedor"
-        className="chatView"
-        style={{ textAlign: "left", height: "84vh" }}
-      >
+      <h1 className="title-room">{currentRoom || "Bienvenido a chatNet.."}</h1>
+      <div className="chatView">
         {/* Mostrar mis mensajes a la derecha */}
         {messages.map((message, index) => {
           if (message.type === "message") {
             return (
               <div className="message-card" key={index}>
-                {message.username}: <div>{message.text}</div>
+                <p
+                  className="username-user"
+                  style={{
+                    color: message.colorUser,
+                  }}
+                >
+                  {message.username}
+                </p>
+                :<div>{message.text}</div>
               </div>
             );
           } else {
             return (
               <div className="info-card" key={index}>
                 <div>
-                  {" "}
-                  {message.username} :{" "}
-                  {message.type === "leave_user"
-                    ? " Ha dejado la sala"
-                    : "Ha entrado a la sala"}
+                  <p
+                    className="username-user"
+                    style={{
+                      color: message.colorUser,
+                    }}
+                  >
+                    {message.username}
+                  </p>
+
+                  {(() => {
+                    if (message.type === "leave_user") {
+                      return " Ha dejado la sala";
+                    }
+                    if (message.type === "entered_user") {
+                      return " Ha entrado la sala";
+                    }
+                    if (message.type === "disconnect_user") {
+                      return " Se ha desconectado";
+                    }
+                  })()}
                 </div>
               </div>
             );
@@ -89,17 +117,18 @@ function ChatView({ username, currentRoom, clear, setClear }) {
         })}
       </div>
 
-      <input
-        className="input-dating"
-        type="text"
-        value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-
-      <button onClick={handleSendMessage} className="button-dating">
-        Enviar
-      </button>
+      <div className="container-inputs">
+        <input
+          className="input-dating"
+          type="text"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <div onClick={handleSendMessage} className="button-dating">
+          Enviar
+        </div>
+      </div>
     </div>
   );
 }
