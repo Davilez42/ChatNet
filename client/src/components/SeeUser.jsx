@@ -10,10 +10,10 @@ function SeeUser({ inputValue }) {
   const [getRooms, setGetRooms] = useState(true);
   const [nameNewRoom, setNameNewRoom] = useState("");
   const [clear, setClear] = useState(false);
-
   const [colorUser, setColorUser] = useState(generateColorHexadecimal());
 
   const handlerListenRoom = (room) => {
+    const tkn = window.sessionStorage.getItem("tkn");
     console.log(currentRoomListen);
     if (currentRoomListen !== room) {
       if (currentRoomListen !== "") {
@@ -21,23 +21,27 @@ function SeeUser({ inputValue }) {
           username: inputValue,
           colorUser,
           name_room: currentRoomListen,
+          tkn,
         });
       }
       socket.emit("join-room", {
         username: inputValue,
         colorUser,
         name_room: room,
+        tkn,
       });
       setCurrentRoomListen(room);
     }
   };
 
   const handlerCreateRoom = () => {
+    const tkn = window.sessionStorage.getItem("tkn");
     if (currentRoomListen !== "") {
       socket.emit("leave-room", {
         username: inputValue,
         colorUser,
         name_room: currentRoomListen,
+        tkn,
       });
     }
     if (nameNewRoom !== "") {
@@ -45,6 +49,7 @@ function SeeUser({ inputValue }) {
         username: inputValue,
         colorUser,
         name_room: nameNewRoom,
+        tkn,
       });
       setCurrentRoomListen(nameNewRoom);
     }

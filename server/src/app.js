@@ -1,11 +1,9 @@
 import express from "express";
 import { createServer } from 'http'
 import mainSocket from "./sockets/mainSocket.js";
-
 import 'dotenv'
 
 //ROUTES
-import chatNet from "./routes/v1/index.routes.js";
 const server_express = express()
 
 //SocketConfig
@@ -27,7 +25,7 @@ server_express.use(express.json());
 server_express.get('/', (req, res) => {
     res.send('Welcome to server')
 })
-server_express.use(chatNet)
+
 
 export default app_server;
 

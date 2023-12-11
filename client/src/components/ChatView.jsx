@@ -7,6 +7,7 @@ function ChatView({ username, currentRoom, clear, setClear, colorUser }) {
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = () => {
+    const tkn = window.sessionStorage.getItem("tkn");
     const contenedor = document.getElementById("miContenedor");
     if (contenedor) {
       contenedor.scrollTop = contenedor.scrollHeight;
@@ -18,6 +19,7 @@ function ChatView({ username, currentRoom, clear, setClear, colorUser }) {
       username,
       colorUser,
       text: newMessage,
+      tkn,
     });
     setNewMessage("");
   };

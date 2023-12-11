@@ -30,6 +30,7 @@ function TypeNameUser() {
       }
       setNoneType("a");
       setNonesee("total-none");
+      window.sessionStorage.setItem("tkn", body.tkn);
     };
     socket.on("info_message", info_message);
     return () => {
